@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hangman/widgets/character_picker.dart';
 import 'package:hangman/widgets/hang_man.dart';
+import 'package:hangman/widgets/word_puzzle.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,7 +31,14 @@ class _HomeScreenState extends State<HomeScreen> {
             HangMan(
               size: size,
             ),
-            const Expanded(child: Center(child: Text("HangMan")))
+            Expanded(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                CharacterPicker(),
+                WordPuzzle(guessWord: "HANGMAN")],
+            ))
           ],
         ),
       ),
