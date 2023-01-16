@@ -87,6 +87,10 @@ class GameStageBloc {
       return;
     }
   }
+
+  void dispose(){
+    _guessedCharactersController.close();
+  }
 }
 
 /// states of the game
