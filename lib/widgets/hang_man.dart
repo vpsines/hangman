@@ -3,7 +3,9 @@ import 'package:hangman/bloc/game_stage_bloc.dart';
 
 class HangMan extends StatelessWidget {
   final Size size;
-  const HangMan({super.key, required this.size});
+  final GameStageBloc gameStageBloc;
+  
+  const HangMan({super.key, required this.size, required this.gameStageBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class HangMan extends StatelessWidget {
       height: size.height,
       padding: const EdgeInsets.all(12),
       child: CustomPaint(
-        painter: HangManPainter(),
+        painter: HangManPainter(gameStageBloc),
         size: Size(270 - 24, size.height - 24),
       ),
     );
