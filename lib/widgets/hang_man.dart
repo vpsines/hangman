@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hangman/bloc/game_stage_bloc.dart';
 
 class HangMan extends StatelessWidget {
   final Size size;
@@ -21,7 +22,11 @@ class HangMan extends StatelessWidget {
 enum Limb { left, right }
 
 class HangManPainter extends CustomPainter {
+  final GameStageBloc _gameStageBloc;
+
   final double _headHeight = 32;
+
+  HangManPainter(this._gameStageBloc);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -31,12 +36,26 @@ class HangManPainter extends CustomPainter {
 
     _drawFrame(canvas, size, paint);
     _drawNoose(canvas, size, paint);
-    _drawHead(canvas, size, paint);
-    _drawBody(canvas, size, paint);
-    _drawLeg(canvas, size, paint, Limb.left);
-    _drawLeg(canvas, size, paint, Limb.right);
-    _drawHand(canvas, size, paint, Limb.left);
-    _drawHand(canvas, size, paint, Limb.right);
+
+    if (_gameStageBloc.lostParts.value.contains(BodyPart.head)) {
+      _drawHead(canvas, size, paint);
+    }
+
+    if (_gameStageBloc.lostParts.value.contains(BodyPart.body)) {
+      _drawBody(canvas, size, paint);
+    }
+    if (_gameStageBloc.lostParts.value.contains(BodyPart.leftLeg)) {
+      _drawLeg(canvas, size, paint, Limb.left);
+    }
+    if (_gameStageBloc.lostParts.value.contains(BodyPart.rightLeg)) {
+      _drawLeg(canvas, size, paint, Limb.right);
+    }
+    if (_gameStageBloc.lostParts.value.contains(BodyPart.leftHand)) {
+      _drawHand(canvas, size, paint, Limb.left);
+    }
+    if (_gameStageBloc.lostParts.value.contains(BodyPart.rightHand)) {
+      _drawHand(canvas, size, paint, Limb.right);
+    }
   }
 
   @override
