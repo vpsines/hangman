@@ -22,7 +22,7 @@ enum GameState{
 }
 
 /// body parts of hangman
-enum BodyParts{
+enum BodyPart{
   head,
   body,
   leftLeg,
